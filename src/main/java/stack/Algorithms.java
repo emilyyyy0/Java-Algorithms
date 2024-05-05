@@ -32,9 +32,30 @@ public class Algorithms {
 
         // stack.peek(): peeks the top of the stack without removing the item.
 
+        System.out.println("PRINT NEXT GREATER ELEMENT FUNCTION ");
+        printNextGreaterElement(new int[]{16,7,2,15});
+
+
+        // Has Matching Parentheses function
+        System.out.println();
+        System.out.println("HAS MATCHING PARENTHESES FUNCTION");
+
+        System.out.println(hasMatchingParentheses("((algorithm()))"));
+        System.out.println(hasMatchingParentheses("()(algorithm())"));
+        System.out.println(hasMatchingParentheses("((algorithm))"));
+        System.out.println(hasMatchingParentheses("(algorithm)"));
+
         System.out.println();
 
-        printNextGreaterElement(new int[]{16,7,2,15});
+        System.out.println(hasMatchingParentheses("(algorithm("));
+        System.out.println(hasMatchingParentheses(")algorithm)"));
+        System.out.println(hasMatchingParentheses(")algorithm("));
+        System.out.println(hasMatchingParentheses("algorithm(("));
+        System.out.println(hasMatchingParentheses("(algorithm"));
+        System.out.println(hasMatchingParentheses("((algorithm)"));
+
+
+
     }
 
     public static void printNextGreaterElement(int[] arr) {
@@ -80,9 +101,61 @@ public class Algorithms {
             System.out.println(stack.pop() + " --> " + -1);
         }
 
+        // In this, the assumption of the next greater element always being to the right, played a
+        // significant role in our implementation
+
     }
-    // In this, the assumption of the next greater element always being to the right, played a
-    // significant role in our implementation
+
+    // Returns true or false depending on depending on whether the parentheses are matching
+    public static boolean hasMatchingParentheses(String s) {
+        Stack<Character> stack = new Stack<>();
+        // stack will keep track of the opening characters we have seen
+        // pop stack if we run into a closing character
+        // if stack is not empty by the end of the execution, there must be more opening than closing symbols
+
+        for (int i = 0; i < s.length(); i++) {
+            char current = s.charAt(i);
+            if (current == '(') {
+                stack.push(current);
+            } else if (current == ')') {
+                // make sure there is an opening symbol associated with it
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                } else {
+                    return false; // parentheses are not matching
+                }
+
+            }
+        }
+
+        return stack.isEmpty();
+
+    }
+
+    public static boolean hasMatchingParenthesesInt(String s) {
+        // we can use an integer instead of a stack
+        // since we are only dealing with one symbol type
+        int matchingSymbolTracker = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char current = s.charAt(i);
+            if (current == '(') {
+                matchingSymbolTracker++;
+            } else if (current == ')') {
+                // make sure there is an opening symbol associated with it
+                if (matchingSymbolTracker > 0) {
+                    matchingSymbolTracker--;
+                } else {
+                    return false; // parentheses are not matching
+                }
+
+            }
+        }
+        return matchingSymbolTracker == 0;
+        //O(n) times
+        // O(1) space, more efficient. 
+    }
+
 
 
 
