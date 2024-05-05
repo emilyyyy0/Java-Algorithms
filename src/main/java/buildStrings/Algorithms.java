@@ -21,7 +21,7 @@ public class Algorithms {
         if (s == null || s.isEmpty()) {
             return s;
         }
-        
+
         StringBuilder sb = new StringBuilder(s);
         return sb.reverse().toString();
     }
