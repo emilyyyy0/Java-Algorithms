@@ -1,7 +1,9 @@
 package hash;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class Algorithms {
     public static void main(String[] args) {
@@ -34,7 +36,37 @@ public class Algorithms {
         System.out.println(productCodes.contains("H5J781"));
         System.out.println(productCodes.contains("Hwef"));
 
+        // FIND MISSING ELEMENTS FUNCTION
+        System.out.println();
+        System.out.println("MISSING ELEMENTS FUNCTION ");
+        findMissingElements(new int[]{1,2,3,4}, new int[] {1,3}).forEach(System.out::println);
 
+        System.out.println();
+
+        findMissingElements(new int[] {8, 0, 1, 7, 3},
+                new int[]{5, 7, 8, 0, 2}).forEach(System.out::println);
 
     }
+
+    public static List<Integer> findMissingElements(int[] first, int[] second ) {
+        List<Integer> missingElements = new ArrayList<>();
+        // In order to find out whether an element is missing from the second array, we need to know what
+        // items are in the second array, then we can cross check them with the first array.
+        HashSet<Integer> hashSet = new HashSet<>();
+
+        // put all items in the second array in the hash map
+        for (int x : second) {
+            hashSet.add(x);
+        }
+
+        // iterate through the first array
+        for (int x : first) {
+            if (!hashSet.contains(x)) {
+                missingElements.add(x);
+            }
+        }
+        return missingElements;
+
+    }
+
 }
