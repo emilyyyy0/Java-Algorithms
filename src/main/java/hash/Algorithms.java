@@ -46,6 +46,24 @@ public class Algorithms {
         findMissingElements(new int[] {8, 0, 1, 7, 3},
                 new int[]{5, 7, 8, 0, 2}).forEach(System.out::println);
 
+        // DISPLAY FREQUENCY OF EACH ELEMENT FUNCTION
+        System.out.println();
+        System.out.println("DISPLAY FREQUENCY OF EACH ELEMENT FUNCTION ");
+        displayFreqOfEachElement(new int[] {4, 1, 3, 4, 5, 8, 3, 4,
+                4, 4, 4, 6, 5});
+
+
+        // CHECK IF LINKED LIST HAS A CYCLE
+        System.out.println();
+        System.out.println("CHECK IF LINKED LIST HAS A CYCLE");
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = head;
+
+        System.out.println(hasCycle(head)); 
+
+
     }
 
     public static List<Integer> findMissingElements(int[] first, int[] second ) {
@@ -68,5 +86,46 @@ public class Algorithms {
         return missingElements;
 
     }
+
+    public static void displayFreqOfEachElement(int[] arr) {
+        HashMap<Integer, Integer> freqMap = new HashMap<>();
+        for (int x : arr) {
+            if (!freqMap.containsKey(x)) {
+                freqMap.put(x, 1);
+            } else {
+                freqMap.put(x, freqMap.get(x) + 1); // overwrite with incremented value
+            }
+        }
+
+        // now display info to user
+        freqMap.forEach((key, value) -> System.out.println(key + " : " + value));
+    }
+
+
+    // Return true or false depending on if there's a
+    // cycle in the Linked List
+    static boolean hasCycle(ListNode head) {
+        HashSet<ListNode> hashSet = new HashSet<>();
+
+        // iterate through linked list, everytime we see a new node
+        // check if its in the hash set
+
+        ListNode current = head;
+
+        while(current != null) {
+            if (hashSet.contains(current)) {
+                return true;
+            }
+            hashSet.add(current); // to keep track of it
+            current = current.next;
+
+        }
+
+        return false;
+    }
+    // With hashSet we were able to check in constant time
+    // ALgorithm runs in linear time: O(n)
+    // Space complexity: O(n)
+    // check every node
 
 }
