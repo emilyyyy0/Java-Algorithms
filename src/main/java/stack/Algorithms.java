@@ -153,7 +153,7 @@ public class Algorithms {
         }
         return matchingSymbolTracker == 0;
         //O(n) times
-        // O(1) space, more efficient. 
+        // O(1) space, more efficient.
     }
 
 
