@@ -46,7 +46,22 @@ public class BinaryTree {
         }
     }
 
+    // Return the maximum depth of the binary tree
+    // O(n) time
+    // We need to visit every node of the tree in order to calculate the height.
+    public int findHeight(Node root) {
+        // base case
+        if (root == null) {
+            return 0; // no nodes in the tree
+        } else {
+            int leftHeight = findHeight(root.left); // calculates the height of the left subtree
+            int rightHeight = findHeight(root.right);
 
+            return 1 + Math.max(leftHeight, rightHeight); // tree must be at least one in height
+            // Total height of the tree is 1 (this level) + maximum of the subtree levels
+
+        }
+    }
 
 
 

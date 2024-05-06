@@ -53,6 +53,30 @@ public class Algorithms {
         tree.postOrderTraversal(); // 9 10 2 7 4 5
         System.out.println();
 
+        // FIND HEIGHT FUNCTION
+        System.out.println("FINDING THE HEIGHT OF THE BINARY TREE");
+        Node rootNode3 = new Node();
+        rootNode3.data = 10;
+
+        Node nodeTwo3 = new Node();
+        nodeTwo3.data = 5;
+        rootNode3.left = nodeTwo3;
+
+        Node nodeThree3 = new Node();
+        nodeThree3.data = 15;
+        rootNode3.right = nodeThree3;
+
+        Node nodeFour3 = new Node();
+        nodeFour3.data = 3;
+        rootNode3.left.left = nodeFour3;
+
+        Node nodeFive3 = new Node();
+        nodeFive3.data = 7;
+        rootNode3.right.right = nodeFive3;
+
+        BinaryTree binaryTree3 = new BinaryTree();
+
+        System.out.println(binaryTree3.findHeight(rootNode3));
 
     }
 }
